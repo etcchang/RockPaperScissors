@@ -19,20 +19,7 @@ function throwRock() {
 // display bot's throw
 // document.getElementById('cScore').innerHTML = botThrowNumber;
 // determine outcome
-  var gameOutcome;
-  if (botThrowNumber == 0) {
-    gameOutcome = 'Draw, you chose rock, robot chose rock';
-  }
-  else if (botThrowNumber == 1) {
-    gameOutcome = 'You lose, you chose rock, robot chose paper';
-    botScore = botScore + 1;
-    updateScore();
-  }
-  else {
-    gameOutcome = 'You win, you chose rock, robot chose scissors';
-    playerScore = playerScore + 1;
-    updateScore();
-  }
+  var gameOutcome = getGameOutcome(playerThrow, botThrowNumber);
 // display game outcome
   document.getElementById('status').innerHTML = gameOutcome;
 }
@@ -43,20 +30,7 @@ function throwPaper() {
 // document.getElementById('hScore').innerHTML = 1;
   var botThrowNumber = getRobotsThrow();
 // document.getElementById('cScore').innerHTML = botThrowNumber;
-  var gameOutcome;
-  if (botThrowNumber == 0) {
-    gameOutcome = 'You win, you chose paper, robot chose rock';
-    playerScore = playerScore + 1;
-    updateScore();
-  }
-  else if (botThrowNumber == 1) {
-    gameOutcome = 'Draw, you chose paper, robot chose paper';
-  }
-  else {
-    gameOutcome = 'You lose, you chose paper, robot chose scissors';
-    botScore = botScore + 1;
-    updateScore();
-  }
+  var gameOutcome = getGameOutcome(playerThrow, botThrowNumber);
   document.getElementById('status').innerHTML = gameOutcome;
 }
 
@@ -66,20 +40,7 @@ function throwScissors() {
 // document.getElementById('hScore').innerHTML = 2;
   var botThrowNumber =  getRobotsThrow();
 // document.getElementById('cScore').innerHTML = botThrowNumber;
-  var gameOutcome;
-  if (botThrowNumber == 0) {
-    gameOutcome = 'You lose, you chose scissors, robot chose rock';
-    botScore = botScore + 1;
-    updateScore();
-  }
-  else if (botThrowNumber == 1) {
-    gameOutcome = 'You win, you chose scissors, robot chose paper';
-    playerScore = playerScore + 1;
-    updateScore();
-  }
-  else {
-    gameOutcome = 'Draw, you chose scissors, robot chose scissors';
-  }
+  var gameOutcome = getGameOutcome(playerThrow, botThrowNumber);
   document.getElementById('status').innerHTML = gameOutcome;
 }
 
@@ -96,3 +57,25 @@ function getRobotsThrow() {
 // Math.random = random number from 0 to less than 1
   return Math.floor(Math.random() * 3);
 }
+
+// Input: playerThrow and botThrow
+// Output: win, lose or tie
+function getGameOutcome(playerThrow, botThrow) {
+  if (playerThrow === botThrow) {
+    return 'tie';
+  }
+  else if ( (playerThrow === 0 && botThrow === 2) ||
+            (playerThrow === 1 && botThrow === 0) ||
+            (playerThrow === 2 && botThrow === 1) ) {
+
+    return 'win'
+  }
+  else {
+    return 'lose'
+  }
+}
+
+// save this for later
+// gameOutcome = 'Draw, you chose rock, robot chose rock';
+// gameOutcome = 'You win, you chose rock, robot chose scissors';
+// gameOutcome = 'You lose, you chose rock, robot chose paper';
