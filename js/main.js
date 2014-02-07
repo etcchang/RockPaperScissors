@@ -11,37 +11,17 @@ document.getElementById('scissors').onclick = throwScissors;
 function throwRock() {
 // use console log to confirm
   console.log('user threw rock');
-  var playerThrow = 0;
-// display player's throw
-// document.getElementById('hScore').innerHTML = 0;
-// get bot to throw
-  var botThrowNumber =  getRobotsThrow();
-// display bot's throw
-// document.getElementById('cScore').innerHTML = botThrowNumber;
-// determine outcome
-  var gameOutcome = getGameOutcome(playerThrow, botThrowNumber);
-// display game outcome
-  document.getElementById('status').innerHTML = gameOutcome;
+  playGame(0);
 }
 
 function throwPaper() {
   console.log('user threw paper');
-  var playerThrow = 1;
-// document.getElementById('hScore').innerHTML = 1;
-  var botThrowNumber = getRobotsThrow();
-// document.getElementById('cScore').innerHTML = botThrowNumber;
-  var gameOutcome = getGameOutcome(playerThrow, botThrowNumber);
-  document.getElementById('status').innerHTML = gameOutcome;
+  playGame(1);
 }
 
 function throwScissors() {
   console.log('user threw scissors');
-  var playerThrow = 2;
-// document.getElementById('hScore').innerHTML = 2;
-  var botThrowNumber =  getRobotsThrow();
-// document.getElementById('cScore').innerHTML = botThrowNumber;
-  var gameOutcome = getGameOutcome(playerThrow, botThrowNumber);
-  document.getElementById('status').innerHTML = gameOutcome;
+  playGame(2);
 }
 
 function updateScore() {
@@ -73,6 +53,19 @@ function getGameOutcome(playerThrow, botThrow) {
   else {
     return 'lose'
   }
+}
+
+function playGame(playerThrow) {
+  // display player's throw
+  // document.getElementById('hScore').innerHTML = 0;
+  // get bot to throw
+  var botThrow =  getRobotsThrow();
+  // display bot's throw
+  // document.getElementById('cScore').innerHTML = botThrowNumber;
+  // determine outcome
+  var gameOutcome = getGameOutcome(playerThrow, botThrow);
+  // display game outcome
+  document.getElementById('status').innerHTML = gameOutcome;
 }
 
 // save this for later
