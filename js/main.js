@@ -1,5 +1,6 @@
-  var botScore = 0;
-  var playerScore = 0;
+var botScore = 0;
+var playerScore = 0;
+var THROWS = ['rock', 'paper', 'scissors']
 
 // associate button presses with functions
 // throwRock, throwPaper, throwScissors
@@ -55,6 +56,11 @@ function getGameOutcome(playerThrow, botThrow) {
   }
 }
 
+function displayOutcome(outcome, playerThrow, botThrow) {
+  var status = outcome + ", you chose " + THROWS[playerThrow] + ", robot chose " + THROWS[botThrow]
+  document.getElementById('status').innerHTML = status;
+}
+
 function playGame(playerThrow) {
   // display player's throw
   // document.getElementById('hScore').innerHTML = 0;
@@ -63,9 +69,9 @@ function playGame(playerThrow) {
   // display bot's throw
   // document.getElementById('cScore').innerHTML = botThrowNumber;
   // determine outcome
-  var gameOutcome = getGameOutcome(playerThrow, botThrow);
+  var outcome = getGameOutcome(playerThrow, botThrow);
   // display game outcome
-  document.getElementById('status').innerHTML = gameOutcome;
+  displayOutcome(outcome, playerThrow, botThrow);
 }
 
 // save this for later
