@@ -84,8 +84,8 @@ function throwScissors() {
 }
 
 function updateScore() {
-document.getElementById('computerScore').innerHTML = botScore;
-document.getElementById('humanScore').innerHTML = playerScore;
+  document.getElementById('computerScore').innerHTML = botScore;
+  document.getElementById('humanScore').innerHTML = playerScore;
 }
 
 // create a Function for robot's throw
