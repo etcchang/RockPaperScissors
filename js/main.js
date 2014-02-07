@@ -1,6 +1,9 @@
 var botScore = 0;
 var playerScore = 0;
-var THROWS = ['rock', 'paper', 'scissors']
+var THROWS = ['rock', 'paper', 'scissors'];
+var TIE = 'tie';
+var WIN = 'win';
+var LOSE = 'lose';
 
 // associate button presses with functions
 // throwRock, throwPaper, throwScissors
@@ -25,7 +28,17 @@ function throwScissors() {
   playGame(2);
 }
 
-function updateScore() {
+function updateScores(outcome) {
+  if (outcome === WIN) {
+    ++playerScore;
+  }
+  else if (outcome === LOSE) {
+    ++botScore;
+  }
+
+}
+
+function displayCurrentScores() {
   document.getElementById('computerScore').innerHTML = botScore;
   document.getElementById('humanScore').innerHTML = playerScore;
 }
@@ -43,16 +56,16 @@ function getRobotsThrow() {
 // Output: win, lose or tie
 function getGameOutcome(playerThrow, botThrow) {
   if (playerThrow === botThrow) {
-    return 'tie';
+    return TIE;
   }
   else if ( (playerThrow === 0 && botThrow === 2) ||
             (playerThrow === 1 && botThrow === 0) ||
             (playerThrow === 2 && botThrow === 1) ) {
 
-    return 'win'
+    return WIN;
   }
   else {
-    return 'lose'
+    return LOSE;
   }
 }
 
@@ -72,6 +85,8 @@ function playGame(playerThrow) {
   var outcome = getGameOutcome(playerThrow, botThrow);
   // display game outcome
   displayOutcome(outcome, playerThrow, botThrow);
+  updateScores(outcome);
+  displayCurrentScores();
 }
 
 // save this for later
